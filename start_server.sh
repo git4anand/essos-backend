@@ -1,5 +1,6 @@
 #!/bin/sh
 
+git pull
 docker build -t essos_backend .
 docker stop essos
 docker rm essos
