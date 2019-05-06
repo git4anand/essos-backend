@@ -21,6 +21,7 @@ class Song(models.Model):
     name = models.CharField(max_length=255)
     album = models.ForeignKey(Album, on_delete=models.CASCADE)
     artists = models.ManyToManyField(Artist)
+    released = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
         return self.name
