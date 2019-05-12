@@ -33,6 +33,10 @@ def song_api(request, name):
 @api_view(['GET'])
 def artist_api(request, name):
     name = name.replace('_', ' ')
-    artist = get_object_or_404(Artist, name__iexact=name)
 
-    return Response(ArtistSongSerializer(artist).data)
+    if name == 'all':
+        artists = Artist.objects.all()
+        return Response(ArtistSongSerializer(artists, many=True).data)
+    else:
+        artist = get_object_or_404(Artist, name__iexact=name)
+        return Response(ArtistSongSerializer(artist).data)
